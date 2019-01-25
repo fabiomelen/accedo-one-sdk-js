@@ -19,6 +19,7 @@
       deviceId: 'sdk-browser-sample',
       // activate verbose mode
       // log(...args) { console.log(...args); },
+      useSessionKeyAsQuerystringParam: true,
     });
     one.getEntries().then(function(d) {
       document.getElementById('output').innerHTML = JSON.stringify(d, null, 2);

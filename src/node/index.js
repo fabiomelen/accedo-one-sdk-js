@@ -18,6 +18,7 @@ const stamp = commonStamps.compose(appLogNode);
  * @param  {function} [config.onDeviceIdGenerated] callback to obtain the new deviceId, if one gets generated
  * @param  {function} [config.onSessionKeyChanged] callback to obtain the sessionKey, anytime a new one gets generated
  * @param  {string} [config.target] all APIs calls will use this as the base API URL (defaults to the Accedo One API URL)
+ * @param  {boolean} [config.useSessionKeyAsQuerystringParam] all APIs call will set sessionKey as querystring param instead of custom header X-SESSION
  * @return {client}        an Accedo One client tied to the given params
  * @example
  * const accedoOne = require('@accedo/accedo-one');

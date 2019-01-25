@@ -17,7 +17,7 @@ const checkUsability = ({ appKey, deviceId, sessionKey } = {}) =>
 
 // Refer to `./index` for the doc
 const makeAccedoOne = stamp => config => {
-  const { gid, appKey, ip, target } = config;
+  const { gid, appKey, ip, target, useSessionKeyAsQuerystringParam } = config;
   const {
     log = noop,
     onDeviceIdGenerated = noop,
@@ -49,6 +49,7 @@ const makeAccedoOne = stamp => config => {
     target,
     log,
     onSessionKeyChanged,
+    useSessionKeyAsQuerystringParam,
   };
   Object.defineProperty(stampConfig, 'sessionKey', {
     set(val) {

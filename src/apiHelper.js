@@ -13,8 +13,8 @@ const getForwardedForHeader = ({ ip }) => {
   return { 'X-FORWARDED-FOR': ip };
 };
 
-const getSessionHeader = ({ sessionKey }) => {
-  if (!sessionKey) {
+const getSessionHeader = ({ sessionKey, useSessionKeyAsQuerystringParam }) => {
+  if (!sessionKey || useSessionKeyAsQuerystringParam) {
     return {};
   }
   return { 'X-SESSION': sessionKey };
@@ -30,9 +30,16 @@ const getQueryString = (config, existingQs = {}) => {
         appKey: config.appKey,
         uuid: config.deviceId,
       };
+
   if (config.gid) {
     defaultQs.gid = config.gid;
   }
+
+  // When [config.useSessionKeyAsQuerystringParam] is true the sessionKey will be sent as querystring param
+  if (config.sessionKey && config.useSessionKeyAsQuerystringParam) {
+    defaultQs.sessionKey = config.sessionKey;
+  }
+
   const qsObject = Object.assign({}, existingQs, defaultQs);
   const queryString = qs.stringify(qsObject);
   return queryString;
